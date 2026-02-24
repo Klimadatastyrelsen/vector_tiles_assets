@@ -1,8 +1,8 @@
 {
     "version": 8,
     "name": "name",
-    "glyphs": "/glyphs/{fontstack}/{range}.pbf",
-	"sprite": "/sprites/official/sprite",
+    "glyphs": "https://cdn.dataforsyningen.dk/assets/vector_tiles_assets/latest/glyphs/{fontstack}/{range}.pbf",
+	"sprite": "https://cdn.dataforsyningen.dk/assets/vector_tiles_assets/latest/sprites/official/sprite",
     "sources": {
         "vector-source": {
             "type": "vector",
