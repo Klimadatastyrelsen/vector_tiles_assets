@@ -2,7 +2,7 @@
 
 Assets for vector tiles provided by Klimadatastyrelsen.
 
-A demo view of all the stylefiles is available at https://sdfidk.github.io/vector_tiles_assets/
+A demo view of all the stylefiles is available at https://klimadatastyrelsen.github.io/vector_tiles_assets/
 
 ## Getting Started
 
