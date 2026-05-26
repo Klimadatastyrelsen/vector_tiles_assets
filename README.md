@@ -10,7 +10,7 @@ Install the [npm package](@dataforsyningen/vector_tiles_assets):
 
 ```npm install @dataforsyningen/vector_tiles_assets```
 
-You can then copy the assets you need into your project from `./node_modules/@dataforsyningen/vector_tiles_assets`. For instance, see how it can be done with esbuild [here](https://github.com/SDFIdk/vector_tiles_frontend/blob/main/escopy.js).
+You can then copy the assets you need into your project from `./node_modules/@dataforsyningen/vector_tiles_assets`. For instance, see how it can be done with esbuild [here](https://github.com/Klimadatastyrelsen/vector_tiles_frontend/blob/main/escopy.js).
 
 Alternatively you can load the assets directly from our CDN, for instance:
 
@@ -19,7 +19,7 @@ Alternatively you can load the assets directly from our CDN, for instance:
 using any release version or `latest`.
 
 ## Read More
-- [Guide to Vector Tiles skærmkort (in Danish)](https://github.com/SDFIdk/vector_tiles_assets/blob/main/docs/tutorials/vejledning.md)
-- [Qgis, ArcGIS pro and other GIS clients](https://github.com/SDFIdk/vector_tiles_assets/blob/main/docs/tutorials/gis_vejledning.md)
-- [Changelog](https://github.com/SDFIdk/vector_tiles_assets/blob/main/CHANGELOG.md)
-- [The Vector Tiles API](https://github.com/SDFIdk/vector_tiles_assets/blob/main/docs/tutorials/api.md)
+- [Guide to Vector Tiles skærmkort (in Danish)](https://github.com/Klimadatastyrelsen/vector_tiles_assets/blob/main/docs/tutorials/vejledning.md)
+- [Qgis, ArcGIS pro and other GIS clients](https://github.com/Klimadatastyrelsen/vector_tiles_assets/blob/main/docs/tutorials/gis_vejledning.md)
+- [Changelog](https://github.com/Klimadatastyrelsen/vector_tiles_assets/blob/main/CHANGELOG.md)
+- [The Vector Tiles API](https://github.com/Klimadatastyrelsen/vector_tiles_assets/blob/main/docs/tutorials/api.md)
