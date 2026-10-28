@@ -1,7 +1,11 @@
 import '@maplibre/maplibre-gl-leaflet'
 import { map, maplibreGL } from 'leaflet'
+import { getVersion, setWorkerUrl } from 'maplibre-gl'
 
 import { projectionDefaults } from './constants'
+
+// The build copies MapLibre's worker into the test folder, next to the ll folder
+setWorkerUrl(new URL(`../maplibre-gl-worker.mjs?v=${getVersion()}`, import.meta.url).toString())
 
 // get defaults from config
 const mapElement = document.getElementById('map')
@@ -33,7 +37,11 @@ const llMap = map('map', {
   attributionControl: false
 })
 
+// MapLibre needs an absolute sprite URL, and the style files here have one relative to the site
+const style = await (await fetch(stylefile)).json()
+style.sprite = new URL(style.sprite, location.href).href
+
 const gl = maplibreGL({
   transformRequest,
-  style: stylefile
+  style
 }).addTo(llMap)

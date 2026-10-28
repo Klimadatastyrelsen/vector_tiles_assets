@@ -12,8 +12,56 @@ Bemærk at API'et ikke er implementeret som OGC API-Tiles standarden, men minder
 
 ### API'et i webaplikationer
 
-Som webapplikation fungerer API'et både for EPSG:25832 og EPSG:3857 i Openlayers, med `ol-mapbox-style`.
-Derudover fungerer API'et med EPSG:3857 i Leaflet og MapLibre ligeledes `ol-mapbox-style`. For at læse mere om frontend implementering se da Github repository [vector_tiles_frontend](https://github.com/Klimadatastyrelsen/vector_tiles_frontend).
+Som webapplikation fungerer API'et både for EPSG:25832 og EPSG:3857 i OpenLayers med `ol-mapbox-style` og i MapLibre GL JS fra version 6.15.
+I Leaflet fungerer API'et med EPSG:3857 via `@maplibre/maplibre-gl-leaflet`. For at læse mere om frontend implementering se da Github repository [vector_tiles_frontend](https://github.com/Klimadatastyrelsen/vector_tiles_frontend).
+
+#### EPSG:25832 i MapLibre GL JS
+
+I MapLibre GL JS registreres projektionen med `addProjection` og API'ets tile-gitter, hvorefter stylefilen bruges med projektionen sat til `EPSG:25832`. Koordinater som `center` angives stadig i længde- og breddegrad, og zoomniveauerne følger API'ets gitter: zoom 7 i EPSG:25832 viser omtrent det samme som zoom 12 i EPSG:3857.
+
+```html
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.16.0/dist/maplibre-gl.css" />
+    <script src="https://unpkg.com/proj4@2.22.0/dist/proj4.js"></script>
+    <style>
+      body { margin: 0; }
+      #map { height: 100vh; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script type="module">
+      import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.16.0/dist/maplibre-gl.mjs';
+
+      const token = 'DIN_TOKEN';
+
+      // EPSG:25832 med API'ets tile-gitter: øverste venstre hjørne af niveau 0
+      // og dets bredde, én tile på 256 px med 3276,8 m pr. pixel.
+      maplibregl.addProjection({
+        name: 'EPSG:25832',
+        projection: proj4('EPSG:4326', '+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs'),
+        tileMatrixSet: { origin: [139000, 6500000], extentAtZoom0: 838860.8 },
+      });
+
+      const style = await (await fetch('https://cdn.dataforsyningen.dk/assets/vector_tiles_assets/latest/styles/official/skaermkort_klassisk.json')).json();
+      style.projection = { type: 'EPSG:25832' };
+
+      const map = new maplibregl.Map({
+        container: 'map',
+        style,
+        center: [10.2, 56.15],
+        zoom: 7,
+        // Tokenet sendes som header til API'et
+        transformRequest: (url) =>
+          url.startsWith('https://api.dataforsyningen.dk') ? { url, headers: { token } } : { url },
+      });
+    </script>
+  </body>
+</html>
+```
 
 ### API'et i GIS-klienter
 Det er forskelligt om GIS-klienterne indlæser Vector Tiles servicen via API, eller direkte igennem style filerne.

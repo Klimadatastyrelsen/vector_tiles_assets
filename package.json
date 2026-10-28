@@ -37,9 +37,9 @@
     "ol": "^10.2.1",
     "proj4": "^2.12.1",
     "ol-mapbox-style": "^12.3.5",
-    "maplibre-gl": "^4.7.1",
+    "maplibre-gl": "^6.16.0",
     "leaflet": "^1.9.4",
-    "@maplibre/maplibre-gl-leaflet": "^0.0.22",
+    "@maplibre/maplibre-gl-leaflet": "^0.1.4",
     "fontnik": "^0.7.2",
     "@dataforsyningen/designsystem": "^8.1.1"
   }
